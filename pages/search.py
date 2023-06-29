@@ -1,5 +1,9 @@
 import time
+from telnetlib import EC
+
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+
 from utils.elements import click_element
 from utils.elements import type_element
 from drivers.edge_driver import get_driver
@@ -22,10 +26,17 @@ def search_values(search):
             type_element(driver, (By.XPATH, "/html/body/div[1]/div[1]/div[4]/div/div/div/div/fieldset/input[1]"),
                          "english")
             click_element(driver, (By.XPATH, "/html/body/div[1]/div[1]/div[4]/div/div/div/div/fieldset/i/input"))
-            time.sleep(5)
+            WebDriverWait(driver, 5).until(EC.visibility_of_element_located((By.XPATH,
+                                                                             "/html/body/div[1]/div[1]/div[5]/div["
+                                                                             "3]/div["
+                                                                             "2]/div/div/div/div/div/div/div/div["
+                                                                             "1]/div/ul/li[2]")))
+
+
 
         elif search == "interactive_course":
-            # click_element(driver, (By.CLASS_NAME,"type-data activehr"))
+
+            click_element(driver, (By.CLASS_NAME,"type-data activehr"))
             type_element(driver, (By.XPATH, "/html/body/div[1]/div[1]/div[4]/div/div/div/div/fieldset/input[1]"),
                          "english")
             click_element(driver, (By.XPATH, "/html/body/div[1]/div[1]/div[4]/div/div/div/div/fieldset/i/input"))
@@ -39,9 +50,9 @@ def search_values(search):
             time.sleep(5)
 
         elif search == "blogs":
-            type_element(driver, (By.XPATH,"/html/body/div[1]/div[1]/div[4]/div/div/div/div/fieldset/input[1]"),
+            type_element(driver, (By.XPATH, "/html/body/div[1]/div[1]/div[4]/div/div/div/div/fieldset/input[1]"),
                          "blogs")
-            click_element(driver, (By.XPATH,"/html/body/div[1]/div[1]/div[4]/div/div/div/div/fieldset/i/input"))
+            click_element(driver, (By.XPATH, "/html/body/div[1]/div[1]/div[4]/div/div/div/div/fieldset/i/input"))
             time.sleep(5)
 
     except Exception as e:
